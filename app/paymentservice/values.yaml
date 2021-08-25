@@ -1,0 +1,24 @@
+spec:
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 5
+  service:
+    type: ClusterIP
+containers:
+  name: server
+  image: gcr.io/google-samples/microservices-demo/paymentservice:v0.2.4
+ports:
+  containerPort: 50051
+  service:
+    name: grpc
+    port: 50051
+    targetPort: 50051
+env:
+  name: PORT
+  value: '"50051"'
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi

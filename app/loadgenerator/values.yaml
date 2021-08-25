@@ -1,0 +1,27 @@
+annotations:
+  istioHTTPProbers: '"true"'
+spec:
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 5
+  restartPolicy: Always
+  initContainers:
+    name: frontend-check
+    image: busybox:latest
+  env:
+    name: FRONTEND_ADDR
+    value: "frontend:80"
+containers:
+  name: main
+  image: gcr.io/google-samples/microservices-demo/loadgenerator:v0.2.4
+  env:
+    name: FRONTEND_ADDR
+    value: "frontend:80"
+    name1: USERS
+    value1: '"10"'
+resources:
+  requests:
+    cpu: 300m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

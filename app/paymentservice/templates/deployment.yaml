@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ .Values.spec.serviceAccountName }}
+      terminationGracePeriodSeconds: {{ .Values.spec.terminationGracePeriodSeconds }}
+      containers:
+      - name: {{ .Values.containers.name }}
+        image: {{ .Values.containers.image }}
+        ports:
+        - containerPort: {{ .Values.ports.containerPort }}
+        env:
+        - name: {{ .Values.env.name }}
+          value: {{ .Values.env.value }}
+        readinessProbe:
+          exec:
+            command: ["/bin/grpc_health_probe", "-addr=:50051"]
+        livenessProbe:
+          exec:
+            command: ["/bin/grpc_health_probe", "-addr=:50051"]
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}

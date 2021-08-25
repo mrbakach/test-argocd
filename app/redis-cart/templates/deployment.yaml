@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Values.containers.name }}
+        image:  {{ .Values.containers.image }}
+        ports:
+        - containerPort: {{ .Values.ports.containerPort }}
+        readinessProbe:
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          tcpSocket:
+            port: {{ .Values.readinessProbe.tcpSocket.port }}
+        livenessProbe:
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          tcpSocket:
+            port: {{ .Values.livenessProbe.tcpSocket.port }}
+        volumeMounts:
+        - mountPath: {{ .Values.volumeMounts.mountPath }}
+          name: {{ .Values.volumeMounts.name }}
+        resources:
+          limits:
+            memory: {{ .Values.resources.limits.memory }}
+            cpu: {{ .Values.resources.limits.cpu }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+      volumes:
+      - name: {{ .Values.volumes.name }}
+        emptyDir: {}
