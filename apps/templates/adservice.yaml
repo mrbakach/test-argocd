@@ -16,7 +16,7 @@ spec:
       values: |
         pushgateway:
           enabled: false
-    repoURL: https://github.com/mrbakach/app-microservices-demo/tree/master/
+    repoURL: https://github.com/mrbakach/app-microservices-demo/app
     targetRevision: 1.0.1
   syncPolicy:
     automated:
