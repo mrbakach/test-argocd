@@ -17,7 +17,6 @@ spec:
         pushgateway:
           enabled: false
     repoURL: https://github.com/mrbakach/app-microservices-demo.git
-    targetRevision: 1.0.1
   syncPolicy:
     automated:
       prune: true
