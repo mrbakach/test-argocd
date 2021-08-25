@@ -11,12 +11,12 @@ spec:
     namespace: default
   project: default
   source:
-    chart: adservice
+    path: app/adservice
     helm:
       values: |
         pushgateway:
           enabled: false
-    repoURL: https://github.com/mrbakach/app-microservices-demo
+    repoURL: https://github.com/mrbakach/app-microservices-demo.git
     targetRevision: 1.0.1
   syncPolicy:
     automated:
