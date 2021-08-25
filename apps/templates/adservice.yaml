@@ -17,7 +17,7 @@ spec:
         pushgateway:
           enabled: false
     repoURL: https://github.com/mrbakach/app-microservices-demo/tree/master/
-    targetRevision: HEAD
+    targetRevision: 1.0.1
   syncPolicy:
     automated:
       prune: true
