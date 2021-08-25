@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loadgenerator
+  namespace: default
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  source:
+    path: app/loadgenerator
+    helm:
+      values: |
+        pushgateway:
+          enabled: false
+    repoURL: https://github.com/mrbakach/app-microservices-demo.git
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
