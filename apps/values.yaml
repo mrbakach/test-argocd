@@ -1,0 +1,13 @@
+#name_adservice: adservice
+#name_cartservice: cartservice
+#name_checkoutservice: checkoutservice
+#name_currencyservice: currencyservice
+#name_emailservice: emailservice
+#name_frontend: frontend
+#name_frontend-external: frontend-external
+#name_loadgenerator: loadgenerator
+#name_paymentservice: paymentservice
+#name_productcatalogservice: productcatalogservice
+#name_recommendationservice: recommendationservice
+#name_redis-cart: redis-cart
+#name_shippingservice: shippingservice
